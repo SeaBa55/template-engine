@@ -21,8 +21,8 @@ How do you deliver this? Here are some guidelines:
 
 * Below is an example of what your application may look like. Remember, the styling is completely up to you so try to make it unique.
 
-![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
-![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
+![Employee Summary 1](./assets/10-OOP-homework-demo-1.png)
+![Employee Summary 2](./assets/10-OOP-homework-demo-2.png)
 
 In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
 
@@ -181,6 +181,8 @@ template-engine_v1.2 - Added all supporting files, and refactored Manager.js to 
 template-engine_v1.3 - Refactored Engineer.js to comply with Engineer.test.js.
 
 template-engine_v1.4 - Refactored Intern.js to comply with Intern.test.js.
+
+template-engine_v1.5 - Added questions array to app.js; Also added injuirer prompting to view current question configurations.
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.

@@ -14,6 +14,85 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+// array of questions for user
+const questions = [
+    {
+        type: "list", name: "build-team",
+        message: "Would you like to build an engineering team?",
+        choices: ["Yes", "No (Quit)"],
+    },
+    {
+        type: "list", name: "action",
+        message: "What would you like to do?",
+        choices: ["Add Member (+)","Remove Member (-)","Quit"],
+    },
+    {
+        type: "input", name: "name-add",
+        message: "Enter new employee's name",
+    },
+    {
+        type: "list", name: "name-remove",
+        message: "Select employee name",
+        // find or add a variable that keeps track of current employees
+        choices: ["currentEmployees"],
+        // search for how to implement dynamic choices
+    },
+    {
+        type: "list", name: "role",
+        message: "Select new employee's role designation",
+        choices: ["Manager","Engineer","Intern","Other"],
+    },
+    {
+        type: "input", name: "id",
+        message: "Enter new employee's id",
+    },
+    {
+        type: "input", name: "email",
+        message: "Enter new employee's email",
+    },
+    {
+        type: "input", name: "office-number",
+        message: "Enter Manager's office designation",
+    },
+    {
+        type: "input", name: "github",
+        message: "Enter Engineer's GitHub username",
+    },
+    {
+        type: "input", name: "school",
+        message: "Enter Intern's school",
+    },
+
+];
+
+// function to deploy user prompts to the CL terminal
+function userPrompt() {
+    return inquirer.prompt(questions);
+}
+
+userPrompt()
+.then(function(data) {
+    writeToFile("team.md",data);
+})
+.then(function(){
+    console.log("success");
+})
+.catch(function(error) {
+    console.log(error);
+});
+
+// function to write README file
+function writeToFile(fileName,data) {
+    fs.writeFile(fileName,JSON.stringify(data),function(error) {
+
+        console.log(fileName + " generated");
+
+        if(error) {
+            throw error;
+        }
+    });
+}
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
