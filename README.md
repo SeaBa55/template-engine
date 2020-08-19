@@ -180,5 +180,7 @@ template-engine_v1.2 - Added all supporting files, and refactored Manager.js to 
 
 template-engine_v1.3 - Refactored Engineer.js to comply with Engineer.test.js.
 
+template-engine_v1.4 - Refactored Intern.js to comply with Intern.test.js.
+
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
