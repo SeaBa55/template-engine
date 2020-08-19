@@ -174,8 +174,9 @@ You are required to submit the following:
 ## Revision History
 template-engine_v1.0 - added .gitignore file keep node modules and .DS_Store files out of git repo.
 
-template-engine_v1.1 -
+template-engine_v1.1 - Added README.md, and refactored Employee.js to comply with Employee.test.js.
 
+template-engine_v1.2 - Added all supporting files, and refactored Manager.js to comply with Manager.test.js.
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
