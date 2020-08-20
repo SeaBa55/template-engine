@@ -17,7 +17,7 @@ const render = require("./lib/htmlRenderer");
 // array of questions for user
 const questions = [
     {
-        type: "list", name: "build-team",
+        type: "list", name: "buildTeam",
         message: "Would you like to build an engineering team?",
         choices: ["Yes", "No (Quit)"],
     },
@@ -27,11 +27,11 @@ const questions = [
         choices: ["Add Member (+)","Remove Member (-)","Quit"],
     },
     {
-        type: "input", name: "name-add",
+        type: "input", name: "name",
         message: "Enter new employee's name",
     },
     {
-        type: "list", name: "name-remove",
+        type: "list", name: "nameRemove",
         message: "Select employee name",
         // find or add a variable that keeps track of current employees
         choices: ["currentEmployees"],
@@ -51,7 +51,7 @@ const questions = [
         message: "Enter new employee's email",
     },
     {
-        type: "input", name: "office-number",
+        type: "input", name: "officeNumber",
         message: "Enter Manager's office designation",
     },
     {
@@ -72,7 +72,9 @@ function userPrompt() {
 
 userPrompt()
 .then(function(data) {
+    console.log(data);
     writeToFile("team.md",data);
+    render(Object.entries(data));
 })
 .then(function(){
     console.log("success");
@@ -83,6 +85,7 @@ userPrompt()
 
 // function to write README file
 function writeToFile(fileName,data) {
+    
     fs.writeFile(fileName,JSON.stringify(data),function(error) {
 
         console.log(fileName + " generated");
@@ -91,6 +94,7 @@ function writeToFile(fileName,data) {
             throw error;
         }
     });
+    
 }
 
 // After the user has input all employees desired, call the `render` function (required

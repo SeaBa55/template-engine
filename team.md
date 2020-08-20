@@ -1,1 +1,1 @@
-{"build-team":"Yes","action":"Add Member (+)","name-add":"MJA","name-remove":"currentEmployees","role":"Manager","id":"12","email":"MJA@gmail.com","office-number":"1","github":"null","school":"GU"}
+{"buildTeam":"Yes","action":"Add Member (+)","name":"sdfs","nameRemove":"currentEmployees","role":"Manager","id":"dsfg","email":"dsfger","officeNumber":"rhthr","github":"ds","school":"htr"}
