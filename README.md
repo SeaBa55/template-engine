@@ -184,5 +184,7 @@ template-engine_v1.4 - Refactored Intern.js to comply with Intern.test.js.
 
 template-engine_v1.5 - Added questions array to app.js; Also added injuirer prompting to view current question configurations.
 
+template-engine_v1.6 - Fixed bugs with inqirer answers data handling. New employee objects are now created based on role and passed to htmlRender.js.  
+
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
