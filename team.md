@@ -1,1 +1,1 @@
-{"buildTeam":"Yes","action":"Add Member (+)","name":"sdfs","nameRemove":"currentEmployees","role":"Manager","id":"dsfg","email":"dsfger","officeNumber":"rhthr","github":"ds","school":"htr"}
+[{"name":"Sebastian Arrazola","id":"12","email":"sebastianarrazola@gmail.com","officeNumber":"1"}]

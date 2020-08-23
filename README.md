@@ -186,5 +186,7 @@ template-engine_v1.5 - Added questions array to app.js; Also added injuirer prom
 
 template-engine_v1.6 - Fixed bugs with inqirer answers data handling. New employee objects are now created based on role and passed to htmlRender.js.  
 
+template-engine_v1.7 - Added functionality that stores output file team.html to an output folder in the same directory.
+
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
