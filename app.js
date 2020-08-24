@@ -16,68 +16,127 @@ const render = require("./lib/htmlRenderer");
 // array cointaining constructed Emplyee objects
 const teamArray = [];
 
-
 // *************************************************************************************
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 // *************************************************************************************
 
-
-// array of questions for inquirer
 const questions = [
     {
-        type: "list", name: "buildTeam",
-        message: "Would you like to build an engineering team?",
-        choices: ["Yes", "No (Quit)"],
-    },
-    {
         type: "list", name: "action",
-        message: "What would you like to do?",
-        choices: ["Add Member (+)","Remove Member (-)","Quit"],
+        message: "Would you like to build an engineering team?",
+        choices: ["Add Member (+)","Quit"],
     },
     {
         type: "input", name: "name",
         message: "Enter new employee's name",
-    },
-    {
-        type: "list", name: "nameRemove",
-        message: "Select employee name",
-        // find or add a variable that keeps track of current employees
-        choices: ["currentEmployees"],
-        // search for how to implement dynamic choices
+        when : function( answers ) {
+            return answers.action === "Add Member (+)";
+        },
     },
     {
         type: "list", name: "role",
         message: "Select new employee's role designation",
-        choices: ["Manager","Engineer","Intern","Other"],
+        choices: ["Manager","Engineer","Intern"],
+        when : function( answers ) {
+            return answers.action === "Add Member (+)";
+        },
     },
     {
         type: "input", name: "id",
         message: "Enter new employee's id",
+        when : function( answers ) {
+            return answers.action === "Add Member (+)";
+        },
     },
     {
         type: "input", name: "email",
         message: "Enter new employee's email",
+        when : function( answers ) {
+            return answers.action === "Add Member (+)";
+        },
     },
     {
         type: "input", name: "officeNumber",
         message: "Enter Manager's office designation",
+        when : function( answers ) {
+            return answers.role === "Manager";
+        },
     },
     {
         type: "input", name: "github",
         message: "Enter Engineer's GitHub username",
+        when : function( answers ) {
+            return answers.role === "Engineer";
+        },
     },
     {
         type: "input", name: "school",
         message: "Enter Intern's school",
+        when : function( answers ) {
+            return answers.role === "Intern";
+        },
     },
 
 ];
 
+
 // function to deploy user prompts to the CL terminal
-function userPrompt() {
-    return inquirer.prompt(questions);
-}
+async function userPrompt() {
+
+    // write code for loading teamarray from memory if it exists
+
+    // wait for inquirer to finish propmpting user
+    const data = await inquirer.prompt(questions)
+
+    // if user quits process console log "aborted"
+    if(data.action == "Quit") {
+
+        // if user quits on first prompt, then consol log "aborted". else quit userPrompt()
+        if(teamArray.length == 0){
+
+            console.log("aborted");
+            return;
+
+        }else{
+
+            return;
+
+        }
+
+    }else{
+
+        // if roll selected is "Manager" then push new Manager object to teamArray 
+        if(data.role == "Manager") {
+            const manager = new Manager(data.name,data.id,data.email,data.officeNumber);
+            teamArray.push(manager);
+        // if roll selected is "Engineer" then push new Engineer object to teamArray 
+        }else if(data.role == "Engineer"){
+            const engineer = new Engineer(data.name,data.id,data.email,data.github);
+            teamArray.push(engineer);
+        // if roll selected is "Intern" then push new Intern object to teamArray 
+        }else if(data.role == "Intern"){
+            const intern = new Intern(data.name,data.id,data.email,data.school);
+            teamArray.push(intern);
+        }else{
+            console.log("aborted");
+            return
+        }   
+
+        // if data.action is not "Quit" then keep prompting the user
+        if(data.action != "Quit") {
+            
+            await userPrompt();
+        
+        }else{
+
+            return;
+
+        }
+
+    }
+
+};
 
 // ***************************************************************************************
 // After the user has input all employees desired, call the `render` function (required
@@ -85,41 +144,23 @@ function userPrompt() {
 // generate and return a block of HTML including templated divs for each employee!
 // ***************************************************************************************
 
-// userPrompt call then await data
+// userPrompt call, then await execution
 userPrompt()
-.then(function(data) {
+.then(function() {
 
-    // if roll selected is "Manager" then push new Manager object to teamArray 
-    if(data.role == "Manager") {
-        const manager = new Manager(data.name,data.id,data.email,data.officeNumber);
-        teamArray.push(manager);
-    // if roll selected is "Engineer" then push new Engineer object to teamArray  
-    }else if(data.role == "Engineer"){
-        const engineer = new Engineer(data.name,data.id,data.email,data.officeNumber);
-        teamArray.push(engineer);
-    // if roll selected is "Intern" then push new Intern object to teamArray 
-    }else if(data.role == "Intern"){
-        const intern = new Intern(data.name,data.id,data.email,data.school);
-        teamArray.push(intern);
-    }else{
-        console.log("aborted");
-        return
-    }
+    // if process is aborted by user teamArry will be "0" in size, and do not execute function outputSend
+    if(teamArray.length != 0){
 
-    // potentially use writeToFile for persistant storage of teamArray
-    // writeToFile("team.md",teamArray);
+        // outputSend call passing html output data from render(teamArray)
+        outputSend(render(teamArray));
 
-    // outputSend call passing html output data from render(teamArray)
-    outputSend(render(teamArray));
+    };
 
-})
-.then(function(){
-
-    // print "success to terminal/console"
-    console.log("success");
 })
 .catch(function(error) {
+
     console.log(error);
+
 });
 
 // ***************************************************************************************
@@ -134,9 +175,9 @@ userPrompt()
 function outputSend(data) {
     fs.writeFile(outputPath,data,'utf8',function(error) {
         if(error) throw error;
-        console.log("output served")
+        console.log("saved output file: team.html")
     });
-}
+};
 
 // ***************************************************************************************
 // HINT: each employee type (manager, engineer, or intern) has slightly different

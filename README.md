@@ -188,5 +188,7 @@ template-engine_v1.6 - Fixed bugs with inqirer answers data handling. New employ
 
 template-engine_v1.7 - Added functionality that stores output file team.html to an output folder in the same directory.
 
+template-engine_v1.8 - Added functionality that recoursivly calls function userPrompt() if user has not yet finished building engineering team. Also added when condisions to the inquirer questions array, to display the intended question for each type of employee.
+
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
