@@ -36,7 +36,7 @@ To execute tests the user must execute the following command:
 ![Employee Summary 1](./assets/10-OOP-homework-demo-2.gif)
 
 ## Output
-![Employee Summary 1](./assets/10-OOP-homework-demo-1.PNG)
+![Employee Summary 1](./assets/10-OOP-homework-demo-1.png)
 
 
 ## Revision History
